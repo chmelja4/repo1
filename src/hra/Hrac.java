@@ -1,5 +1,6 @@
 package hra;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
@@ -48,13 +49,17 @@ public class Hrac {
 	/**
 	 * zajiöùuje pohyb hr·Ëe
 	 */
-	private void posun() {
+	public void posun() {
 		rychlost = rychlost + KOEF_ZRYCHLENI;
 		y = y + rychlost;
 	}
 	
 	public void paint(Graphics g) {
 		g.drawImage(img, x, y, null);	
+		if (HraciPlocha.DEBUG) {
+			g.setColor(Color.WHITE);
+			//g.drawString("[x="+x+",y="+y+", rychlost="+rychlost+"]", x, y-5);
+		}
 	}
 	
 	public int getVyskaHrace() {
