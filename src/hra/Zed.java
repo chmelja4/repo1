@@ -1,6 +1,7 @@
 package hra;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.util.Random;
 
@@ -10,6 +11,7 @@ public class Zed {
 	//rychlost pohybu zdi
 	public static final int RYCHLOST = -6;
 	public static final int MEZERA_MEZI_HORNI_A_DOLNI_CASTI_ZDI = -200;
+	public static final int BODY_ZA_ZED = 1;
 	private Random random;
 	
 	//ruzne zdi, ruzne obrázky =>nelze použít static
@@ -42,7 +44,7 @@ public class Zed {
 		
 	}
 	
-	public void psoun() {
+	public void posun() {
 		//posun zdi
 		x=x+Zed.RYCHLOST;
 		
@@ -76,5 +78,17 @@ public class Zed {
 		Zed.img = img;
 	}
 	
+	public Rectangle getMezSpodniCastiZdi() {
+		return new Rectangle(x,y, SIRKA,vyska);
+	}
+	
+	public Rectangle getMezHorniCastiZdi() {
+		return new Rectangle(x, 0, SIRKA,
+				HraciPlocha.VYSKA - (vyska + MEZERA_MEZI_HORNI_A_DOLNI_CASTI_ZDI));
+	}
+	
+	public void reset() {
+		vygenerujNahodneHodnotyProZed();
+	}
 
 }
